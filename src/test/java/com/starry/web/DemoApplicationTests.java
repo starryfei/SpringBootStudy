@@ -1,4 +1,4 @@
-package com.starry.demo;
+package com.starry.web;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
