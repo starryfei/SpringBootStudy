@@ -1,4 +1,4 @@
-package com.starry.web;
+package com.starry.controller;
 
 import com.starry.entity.InfoEntity;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.springboot.main;
+package com.starry.entity;
 
 import java.sql.Date;
 

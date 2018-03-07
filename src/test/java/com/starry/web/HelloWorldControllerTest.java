@@ -1,5 +1,6 @@
 package com.starry.web;
 
+import com.starry.controller.SampleController;
 import com.starry.entity.InfoEntity;
 import org.junit.Assert;
 import org.junit.Test;

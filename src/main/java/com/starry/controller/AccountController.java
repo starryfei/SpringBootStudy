@@ -1,7 +1,9 @@
-package com.springboot.main;
+package com.starry.controller;
 
 import java.util.List;
 
+import com.starry.entity.Account;
+import com.starry.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

@@ -1,4 +1,4 @@
-package com.starry.web;
+package com.starry.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

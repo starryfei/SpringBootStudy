@@ -1,3 +1,6 @@
+package com.starry.repository;
+
+import com.starry.entity.Account;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
