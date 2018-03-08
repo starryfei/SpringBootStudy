@@ -1,4 +1,4 @@
-package com.springboot.main;
+package com.starry.config;
 
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebInitParam;

@@ -1,4 +1,4 @@
-package com.springboot.main;
+package com.starry.config;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
