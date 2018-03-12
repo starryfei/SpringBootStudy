@@ -1,6 +1,8 @@
 package com.starry.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,10 +25,11 @@ public class RedisController {
 
     // 所以要是操作字符串的话，用StringRedisTemplate就可以了。
     // 但要是想要存储一个对象（比如：User）,我们就需要使用RedisTemplate，并对key采用string序列化方式，对value采用json序列化方式，这时候就需要对redisTemplate自定义配置了：
-
+    @Cacheable("stringKey")
     @RequestMapping(value = "/redis/string", method = RequestMethod.GET)
-    public void insertString(@RequestParam(value = "name") String name) {
+    public String insertString(@RequestParam(value = "name") String name) {
         stringRedisTemplate.opsForValue().set("stringKey", name);
-        stringRedisTemplate.opsForValue().get("stringKey");
+        System.out.print(stringRedisTemplate.opsForValue().get("stringKey"));
+        return  name;
     }
 }
