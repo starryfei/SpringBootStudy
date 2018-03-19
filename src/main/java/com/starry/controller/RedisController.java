@@ -1,8 +1,9 @@
 package com.starry.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,7 +40,7 @@ public class RedisController {
     @CachePut(value="info",key="#name")
     //将方法的返回值写入到缓存中，方法调用前不检查缓存，始终被调用
     public String put(@RequestParam(value = "name") String name) {
-        System.out.print("执行了。。。"));
+        System.out.print("执行了。。。");
         return  name;
     }
     
