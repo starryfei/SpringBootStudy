@@ -1,4 +1,4 @@
-package com.springboot.factory;
+package com.starry.aspect;
 
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -7,15 +7,18 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 
+/**
+ * 定义切面
+ */
 @Aspect
 public class Log {
-    @Pointcut("execution(* com.springboot.factory.*.*(..))")
+    @Pointcut("execution(* com.starry.aspect.*.*(..))")
     // expression
     private void businessService() {
         System.out.println("this is pointcut");
     }
 
-     @Pointcut("execution(* com.springboot.factory.getName(..))")
+     @Pointcut("execution(* com.starry.aspect.Student.getName(..))")
      private void getName() {
      System.out.println("this is getName");
      }
@@ -43,10 +46,4 @@ public class Log {
     }
 }
 
-ApplicationContext context = 
-            new ClassPathXmlApplicationContext("Beans.xml");
-//    ApplicationContext application = new AnnotationConfigApplicationContext(Student.class);
-     Student student = (Student) context.getBean("student");
-     student.getName();
-     student.getAge();     
-     student.printThrowException();
+
