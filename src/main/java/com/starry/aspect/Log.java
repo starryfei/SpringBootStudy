@@ -6,14 +6,16 @@ import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Component;
 
 /**
  * 定义切面
  */
 @Aspect
+@Component
 public class Log {
     @Pointcut("execution(* com.starry.aspect.*.*(..))")
-    // expression
+    // or @Pointcut("@annotation(com.starry.aspect.LogAspect)")
     private void businessService() {
         System.out.println("this is pointcut");
     }
