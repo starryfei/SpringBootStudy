@@ -6,7 +6,6 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cache.annotation.EnableCaching;
 
 @SpringBootApplication
-@ServletComponentScan
 @EnableCaching
 public class Main {
     public static void main(String[] args) {

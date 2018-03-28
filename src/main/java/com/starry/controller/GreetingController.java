@@ -2,6 +2,7 @@ package com.starry.controller;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+import com.starry.aspect.LogAspect;
 import com.starry.web.Greeting;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +14,7 @@ public class GreetingController {
     private static final String template = "hello,%s";
     private final AtomicLong counter = new AtomicLong();
 
+    @LogAspect
     @RequestMapping("gretting")
     @ResponseBody
     public Greeting greeting(

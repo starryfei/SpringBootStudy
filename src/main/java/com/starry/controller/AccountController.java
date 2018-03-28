@@ -1,6 +1,7 @@
 package com.starry.controller;
 
 
+import com.starry.aspect.LogAspect;
 import com.starry.entity.Account;
 import com.starry.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class AccountController {
     @Autowired
     AccountRepository accountRepository;
+    @LogAspect()
     @RequestMapping("account")
     @ResponseBody
-    public Page<Account> getAccount(@RequestParam(value = "page",defaultValue = "1") int currentPage,@RequestParam( value = "size",defaultValue = "5") int pageSize){
+    public Page<Account> getAccount(@RequestParam(value = "page",defaultValue = "1") int currentPage,
+                                    @RequestParam( value = "size",defaultValue = "5") int pageSize){
         Sort.Order idOrder = new Sort.Order(Sort.Direction.DESC, "id");
         Sort sort = new Sort(idOrder);
         PageRequest pageRequest  = new PageRequest(currentPage, pageSize, sort);
