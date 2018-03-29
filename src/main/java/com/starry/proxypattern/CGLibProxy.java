@@ -27,6 +27,8 @@ public class CGLibProxy implements MethodInterceptor {
 
         enhancer.setSuperclass(clz);// 设置需要创建的子类
         enhancer.setCallback(this);
+        //反射机制获得实例构造，并创建代理类对象，主题类的构造函数不是默认空参数的，那么在使用Enhancer类create的时候，
+        //选择create(java.lang.Class[] argumentTypes, java.lang.Object[] arguments) 方法。
         return enhancer.create();// 通过字节码技术动态创建子类实例
     }
 
