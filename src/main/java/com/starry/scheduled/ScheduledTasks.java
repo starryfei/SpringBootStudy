@@ -1,4 +1,4 @@
-package com.springboot.main;
+package com.starry.scheduled;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

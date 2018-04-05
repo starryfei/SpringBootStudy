@@ -14,8 +14,8 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class Log {
-    @Pointcut("execution(* com.starry.aspect.*.*(..))")
-    // or @Pointcut("@annotation(com.starry.aspect.LogAspect)")
+//    @Pointcut("execution(*    com.starry.aspect.*.*(..))")
+    @Pointcut("@annotation(com.starry.aspect.LogAspect)")
     private void businessService() {
         System.out.println("this is pointcut");
     }

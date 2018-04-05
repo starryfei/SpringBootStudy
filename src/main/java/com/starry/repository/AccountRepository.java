@@ -7,5 +7,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AccountRepository extends CrudRepository<Account, Long>,PagingAndSortingRepository<Account,Long> {
+    /**
+     * @param id
+     * @return
+     */
     Account findOneById(Long id);
 }
