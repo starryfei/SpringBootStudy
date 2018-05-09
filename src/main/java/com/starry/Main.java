@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.web.client.RestTemplate;
+import com.starry.entity.Quote;
 /**
  * 
  * @ClassName  Main   
@@ -41,7 +42,7 @@ public class Main {
      */
     @Bean
     CommandLineRunner init(StorageService storageService) {
-        return (args) -> {
+        return (String... args) -> {
             storageService.deleteAll();
             storageService.init();
         };

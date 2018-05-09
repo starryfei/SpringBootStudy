@@ -1,3 +1,4 @@
+package com.starry.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 /**
  * 

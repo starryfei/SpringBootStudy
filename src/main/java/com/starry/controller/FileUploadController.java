@@ -30,7 +30,8 @@ public class FileUploadController {
     public String listUploadFile(Model model) throws IOException{
         model.addAttribute("files",strongService.loadAll().map(
                 path -> MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,
-                        "saveFile",path.getFileName().toString()).build().toString()).collect(Collectors.toList()));
+                        "saveFile", path.getFileName().toString()).build().toString())
+                .collect(Collectors.toList()));
         return "uploadForm";
     }
     @GetMapping("/files/{filename:.+}")
@@ -42,7 +43,8 @@ public class FileUploadController {
 
     }
     @PostMapping("/")
-    public String handleFileUpload(@RequestParam("file")MultipartFile file, RedirectAttributes redirectAttributes){
+    public String handleFileUpload(@RequestParam("file")MultipartFile file,
+                                   RedirectAttributes redirectAttributes){
         strongService.store(file);
         redirectAttributes.addFlashAttribute("message",
                 "you successfuly upload "+ file.getOriginalFilename()+"!");
