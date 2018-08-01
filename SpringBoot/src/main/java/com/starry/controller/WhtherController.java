@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @ClassName WhtherController
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @Date 2018/7/29 18:33
  * @Version 1.0
  **/
-@Controller
+@RestController
 public class WhtherController {
     @Autowired
     private WetherService wetherService;
