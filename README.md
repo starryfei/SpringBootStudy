@@ -19,6 +19,7 @@
 
 #### 3. netty
 - netty echo demo
+- netty 聊天室
 
 #### 4.  Zookeeper
 - 待定
