@@ -1,35 +1,28 @@
-package com.starryfei.netty.server;
-
+package com.starryfei.netty.chat.server;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
-import io.netty.handler.codec.string.StringDecoder;
 
-public class NettyServer {
-    private static int PORT = 8898;
+public class ChatServer {
+ private static int PORT = 9112;
     
-    public void run() throws InterruptedException {
+    @SuppressWarnings("unused")
+    private void run() throws InterruptedException {
         EventLoopGroup bossGroup = new NioEventLoopGroup(); // 用来接收进来的连接
         EventLoopGroup workerGroup = new NioEventLoopGroup(); //处理已经被接收的连接
         ServerBootstrap boot = new ServerBootstrap();
         try{
             boot.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class)
-            .childHandler(new ChannelInitializer<SocketChannel>() {
-    
-                @Override
-                protected void initChannel(SocketChannel ch) throws Exception {
-                    ch.pipeline().addLast(new NettyServerHandler());
-                    Unpooled.copiedBuffer(ch.alloc().buffer());
-                }
-            });
+            .childHandler(new ChatServerInitializer())
+            .option(ChannelOption.SO_BACKLOG, 128)
+            .childOption(ChannelOption.SO_KEEPALIVE, true);
+            
+//            option() 是提供给NioServerSocketChannel 用来接收进来的连接。
+//            childOption() 是提供给由父管道 ServerChannel 接收到的连接。
             ChannelFuture f = boot.bind(PORT).sync();
             System.out.println("服务端启动成功...");
             // 监听服务器关闭监听
@@ -41,9 +34,11 @@ public class NettyServer {
     }
     public static void main(String[] args) {
         try {
-            new NettyServer().run();
+            new ChatServer().run();
         } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
+
 }

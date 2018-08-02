@@ -1,6 +1,7 @@
 package com.starryfei.netty.server;
 
 import java.net.InetAddress;
+import java.nio.channels.Channel;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -15,6 +16,7 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter{
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg)
             throws Exception {
+        ctx.write(msg);
         System.out.println(msg);
         ByteBuf in = (ByteBuf) msg;
         try {
@@ -39,6 +41,7 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter{
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
         // TODO Auto-generated method stub
         System.out.println("finsh");
+        ctx.flush();
         super.channelReadComplete(ctx);
     }
 
