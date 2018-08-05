@@ -29,9 +29,9 @@ public final class ChatServerHandler extends SimpleChannelInboundHandler<String>
         Channel comming = ctx.channel();
         for (Channel channel : group) {
             if (comming == channel) {
-                ctx.writeAndFlush("[you]"+msg+"\n");
+                channel.writeAndFlush("[you]"+msg+"\n");
             } else {
-                ctx.writeAndFlush("["+channel.remoteAddress()+"]" +msg+"\n");
+                channel.writeAndFlush("["+channel.remoteAddress()+"]" +msg+"\n");
             }
         }
     }

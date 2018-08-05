@@ -28,7 +28,6 @@ import com.starry.entity.Quote;
 @EnableCaching
 @EnableScheduling
 @EnableConfigurationProperties(StorageProperties.class)
-@EnableWebSocket
 public class Main {
     private static final Logger log = LoggerFactory.getLogger(Main.class);
     public static void main(String[] args) {
