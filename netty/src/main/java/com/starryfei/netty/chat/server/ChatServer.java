@@ -1,5 +1,11 @@
 package com.starryfei.netty.chat.server;
 
+import java.nio.file.Files;
+import java.util.HashMap;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.FutureTask;
+
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;
@@ -35,6 +41,12 @@ public class ChatServer {
     public static void main(String[] args) {
         try {
             new ChatServer().run();
+            Callable<String> cal = new Callable<String>() {
+                public String call() throws Exception {
+                    // TODO Auto-generated method stub
+                    return null;
+                }
+            };
         } catch (InterruptedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

@@ -20,12 +20,12 @@
 #### 3. netty
 - netty echo demo
 - netty 聊天室
-
+- netty webscoket 聊天
 #### 4.  Zookeeper
 - 待定
 
 #### 5.  dubbo
-- 待定
+- dubbo demo
 
 #### 6. 消息中间件
 - 待定

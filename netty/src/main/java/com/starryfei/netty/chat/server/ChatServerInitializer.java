@@ -23,7 +23,9 @@ public class ChatServerInitializer extends ChannelInitializer<SocketChannel>{
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
-
+        //解码器解决半包读写问题.LinBasedFrameDecoder
+        //linebaseframedecoder是以换行符为结束标记的解码器
+        //StringDecoder解码器就是将对象转成字符串
         pipeline.addLast("framer", new DelimiterBasedFrameDecoder(8192, Delimiters.lineDelimiter()));
         pipeline.addLast("decoder", new StringDecoder());
         pipeline.addLast("encoder", new StringEncoder());

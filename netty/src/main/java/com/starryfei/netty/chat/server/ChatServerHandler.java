@@ -27,11 +27,12 @@ public final class ChatServerHandler extends SimpleChannelInboundHandler<String>
             throws Exception {
         //服务端读到客户端写入信息时，将信息转发给其他客户端的 Channel
         Channel comming = ctx.channel();
+        
         for (Channel channel : group) {
             if (comming == channel) {
-                channel.writeAndFlush("[you]"+msg+"\n");
+                channel.writeAndFlush("[you]： "+msg+"\n");
             } else {
-                channel.writeAndFlush("["+channel.remoteAddress()+"]" +msg+"\n");
+                channel.writeAndFlush("["+channel.remoteAddress()+"]： " +msg+"\n");
             }
         }
     }
@@ -58,7 +59,7 @@ public final class ChatServerHandler extends SimpleChannelInboundHandler<String>
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
         Channel newTalker = ctx.channel();
-        group.writeAndFlush("Message:  "+newTalker.remoteAddress() +" 加入聊天室");
+        group.writeAndFlush("Message:  "+newTalker.remoteAddress() +" 加入聊天室\n");
         group.add(newTalker);
     }
 
@@ -66,8 +67,8 @@ public final class ChatServerHandler extends SimpleChannelInboundHandler<String>
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
         Channel leaveTalker = ctx.channel();
         logger.info(leaveTalker.remoteAddress()+" leave");
-        group.writeAndFlush("Message:  "+leaveTalker.remoteAddress() +" 加入聊天室");
-        group.remove(leaveTalker);
+        group.writeAndFlush("Message:  "+leaveTalker.remoteAddress() +" 离开聊天室\n");
+//        group.remove(leaveTalker);
     }
 
     @Override
