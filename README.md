@@ -20,7 +20,7 @@
 #### 3. netty
 - netty echo demo
 - netty 聊天室
-- netty webscoket 聊天
+- netty webscoket 聊天   “[博客](https://www.kancloud.cn/kancloud/essential-netty-in-action/52620 "博客")”
 #### 4.  Zookeeper
 - 待定
 
