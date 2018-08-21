@@ -56,9 +56,10 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequ
         //http请求/websocket请求
         if (wsUri.equalsIgnoreCase(request.uri())) {
             //请求是 WebSocket 升级，递增引用计数器（保留）并且将它传递给在 ChannelPipeline 中的下个 ChannelInboundHandler
+            //如果该 HTTP 请求被发送到URI “/ws”，则调用 FullHttpRequest 上的 retain()，并通过调用 fireChannelRead(msg) 转发到下一个
+            //ChannelInboundHandler.retain() 的调用是必要的，因为 channelRead() 完成后，它会调用 FullHttpRequest 上的 release() 来释放其资源
             ctx.fireChannelRead(request.retain());
         } else {
-            System.out.println("--------------------------------");
             if (HttpUtil.is100ContinueExpected(request)) {
                 send100Continue(ctx);
             }
@@ -72,6 +73,8 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequ
             }
             ctx.write(response);
             //判断 SslHandler 是否在 ChannelPipeline 来决定是使用 DefaultFileRegion 还是 ChunkedNioFile
+            //如果传输过程既没有要求加密也没有要求压缩，那么把 index.html 的内容存储在一个 DefaultFileRegion 里就可以达到最好的效率。这将利用零拷贝来执行传输。
+            //出于这个原因，我们要检查 ChannelPipeline 中是否有一个 SslHandler。如果是的话，我们就使用 ChunkedNioFile。
             if (ctx.pipeline().get(SslHandler.class) == null) {     
                 ctx.write(new DefaultFileRegion(file.getChannel(), 0, file.length()));
             } else {
