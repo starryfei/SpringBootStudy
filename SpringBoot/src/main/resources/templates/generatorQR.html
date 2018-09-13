@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>二维码生成</title>
+    <script src="qrcode.min.js"></script>
+    <style>
+        .box {
+            width: 110px;
+            height: 110px;
+            border: 1px solid #999;
+        }
+        #qrcode {
+            width: 100px;
+            height: 100px;
+            margin: 5px auto;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div id="qrcode">
+    </div>
+</div>
+
+<input type="text" id="text"> <br>
+<input type="button" id="btn" value="生成二维码">
+</body>
+
+<script>
+    document.getElementById('btn').onclick = function () {
+        document.getElementById("qrcode").innerHTML = ''
+        var text = document.getElementById('text').value;
+        console.log(text);
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            width : 100,//设置宽高
+            height : 100
+        });
+        qrcode.makeCode(text);
+    }
+</script>
+</html>
