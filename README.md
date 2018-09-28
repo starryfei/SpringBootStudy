@@ -28,4 +28,8 @@
 - dubbo demo
 
 #### 6. 消息中间件
-- 待定
+- 基于redis列表实现的消息队列
+
+
+#### 7.  elasticsearch
+- elasticsearch demo
