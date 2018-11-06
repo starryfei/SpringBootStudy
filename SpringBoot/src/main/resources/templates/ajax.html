@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ajax使用</title>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+	$("#get_request").click(function(){
+		$.ajax({
+			type: "GET",
+			url:"https://localhost:8082/alluser",
+			async:true,
+			// Origin: 'https://localhost:8082',
+			header: {
+		        "Content-Type": "application/x-www-form-urlencoded"
+		    },
+			dataType:"json",
+			success:function(result){
+				var info =''
+				$.each(result, function(index,data) {
+					info += result[index].name+'<>'
+				});
+			$("div").text(info);
+		}});
+	});
+	$()
+});
+</script>
+</head>
+<body>
+
+<div><h2> 获取ajax请求</h2></div>
+<button id="get_request">请求</button>
+</body>
+</html>
